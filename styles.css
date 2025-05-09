@@ -1,0 +1,41 @@
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+header, footer {
+    background: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    padding: 1em;
+}
+
+#hero {
+    background-color: #e0e0e0;
+    padding: 40px 20px;
+    text-align: center;
+    min-height: 50vh; /* Para darle algo de espacio */
+}
+
+.hero-title {
+    color: #2c3e50;
+}
+
+.animated-box {
+    width: 100px;
+    height: 100px;
+    background-color: dodgerblue;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+    border-radius: 10px;
+}
