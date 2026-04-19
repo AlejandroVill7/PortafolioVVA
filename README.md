@@ -1,60 +1,73 @@
-# Mi Portafolio Web 
+# React + TypeScript + Vite
 
-¡Bienvenido/a a mi portafolio personal! Este proyecto es una plataforma digital donde presento mis habilidades, proyectos y experiencia profesional. Ha sido desarrollado con un enfoque en un diseño moderno, interacciones fluidas y animaciones atractivas.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## ✨ Características Principales
+Currently, two official plugins are available:
 
-* **Diseño Moderno y Atractivo:** Inspirado en interfaces de usuario de alta calidad, buscando una experiencia visual impactante.
-* **Scroll Suave:** Implementado con la librería [Lenis](https://github.com/darkroomengineering/lenis) para una navegación fluida y agradable.
-* **Animaciones Dinámicas:** Uso de [GSAP (GreenSock Animation Platform)](https://gsap.com/) para animaciones complejas y de alto rendimiento que enriquecen la interacción.
-* **Desarrollo Moderno:** Construido con herramientas actuales para un flujo de trabajo eficiente y optimizado.
-* **Responsivo (en progreso/objetivo):** Diseñado para adaptarse a diferentes tamaños de pantalla (móvil, tablet, escritorio).
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-## 🛠️ Tecnologías Utilizadas
+## React Compiler
 
-* **Frontend:**
-    * HTML5
-    * CSS3
-    * JavaScript (ES6+)
-* **Librerías JavaScript:**
-    * [Lenis](https://github.com/darkroomengineering/lenis): Para el efecto de scroll suave.
-    * [GSAP (GreenSock Animation Platform)](https://gsap.com/): Para animaciones avanzadas.
-* **Entorno de Desarrollo y Herramientas:**
-    * [Node.js](https://nodejs.org/): Entorno de ejecución para JavaScript.
-    * [npm](https://www.npmjs.com/): Gestor de paquetes.
-    * [Vite](https://vitejs.dev/): Herramienta de frontend para un desarrollo rápido y empaquetado optimizado.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## 🚀 Instalación y Puesta en Marcha
+## Expanding the ESLint configuration
 
-Sigue estos pasos para configurar y ejecutar el proyecto en tu entorno local:
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-1.  **Clona el repositorio:**
-    ```bash
-    git clone https://github.com/AlejandroVill7/PortafolioVVA.git
-    ```
-2.  **Navega al directorio del proyecto:**
-    ```bash
-    cd PortafolioVVA
-    ```
-3.  **Instala las dependencias:**
-    Asegúrate de tener Node.js y npm instalados. Luego ejecuta:
-    ```bash
-    npm install
-    ```
-4.  **Inicia el servidor de desarrollo:**
-    Este comando iniciará Vite en modo de desarrollo, generalmente en `http://localhost:5173`.
-    ```bash
-    npm run dev
-    ```
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-## 📜 Scripts Disponibles
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-En el archivo `package.json`, encontrarás los siguientes scripts:
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
 
-* `npm run dev`: Inicia el servidor de desarrollo de Vite con Hot Module Replacement (HMR).
-* `npm run build`: Compila y empaqueta la aplicación para producción en la carpeta `dist/`.
-* `npm run preview`: Sirve localmente el contenido de la carpeta `dist/` para previsualizar la build de producción.
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-## 🚧 Estado del Proyecto
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-Este proyecto se encuentra actualmente **en desarrollo activo**. Nuevas características y mejoras se implementarán continuamente.
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
