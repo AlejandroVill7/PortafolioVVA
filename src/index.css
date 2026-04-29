@@ -1,68 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Share+Tech+Mono&display=swap');
 @import "tailwindcss";
 
-/* 
-  Custom Theme Tokens 
-  Tailwind v4 allows direct @theme configuration inside CSS
-*/
 @theme {
-  --color-brand-bg: #0f0f0f;
-  --color-brand-surface: #1a1614;
-  --color-brand-text: #f5f5dc;
-  --color-brand-accent: #4ade80;
-  
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
-
-  --animate-scanline: scanline 8s linear infinite;
-
-  @keyframes scanline {
-    0% { transform: translateY(-100vh); }
-    100% { transform: translateY(100vh); }
-  }
+  --font-sans: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'Share Tech Mono', 'JetBrains Mono', monospace;
 }
 
 @layer base {
+  :root {
+    /* LIGHT MODE (Cream/Beige base, Muted Tech Accents) */
+    --bg-base: #f5f4ef;
+    --bg-surface: #ebe8de;
+    --bg-panel: #ffffff;
+    --text-main: #2d2c2a;
+    --text-muted: #6b6861;
+    --accent-primary: #8a8d6f; /* Olive/Sage */
+    --accent-secondary: #c26d5c; /* Muted Rust/Magenta */
+    --accent-glow: rgba(138, 141, 111, 0.3);
+    --border-color: #d6d3c8;
+    --grid-color: rgba(45, 44, 42, 0.05);
+  }
+
+  .dark {
+    /* DARK MODE (Coffee/Black base, Vibrant Cyber Accents) */
+    --bg-base: #0f0d0d; /* Very dark coffee/black */
+    --bg-surface: #1a1717;
+    --bg-panel: #141212;
+    --text-main: #f0eadd;
+    --text-muted: #8c837b;
+    --accent-primary: #00ffcc; /* DedSec Cyan */
+    --accent-secondary: #ff0055; /* DedSec Magenta */
+    --accent-glow: rgba(0, 255, 204, 0.3);
+    --border-color: #332d2d;
+    --grid-color: rgba(240, 234, 221, 0.03);
+  }
+
   body {
-    background-color: var(--color-brand-bg);
-    color: var(--color-brand-text);
+    background-color: var(--bg-base);
+    color: var(--text-main);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
   }
 }
 
-/* Custom Scrollbar for non-lenis browsers */
+/* Custom Scrollbar for non-lenis environments */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-brand-bg);
+  background: var(--bg-base);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-brand-surface);
+  background: var(--border-color);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-brand-accent);
+  background: var(--accent-primary);
 }
 
-/* Noise overlay utility class */
-.noise-bg {
+/* ---------------------------------
+   HACKER / DEDSEC UTILITIES
+--------------------------------- */
+
+.font-tech {
+  font-family: var(--font-mono);
+}
+
+.hex-bg {
+  background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.glass-panel {
+  background: var(--bg-surface);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+}
+
+/* Glitch Effect Keyframes */
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 1px); }
+  20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -1px); }
+  40% { clip-path: inset(40% 0 50% 0); transform: translate(-2px, 2px); }
+  60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, -2px); }
+  80% { clip-path: inset(10% 0 70% 0); transform: translate(-1px, 1px); }
+  100% { clip-path: inset(30% 0 50% 0); transform: translate(1px, -1px); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(10% 0 60% 0); transform: translate(2px, -1px); }
+  20% { clip-path: inset(30% 0 20% 0); transform: translate(-2px, 1px); }
+  40% { clip-path: inset(70% 0 10% 0); transform: translate(2px, -2px); }
+  60% { clip-path: inset(20% 0 50% 0); transform: translate(-2px, 2px); }
+  80% { clip-path: inset(50% 0 30% 0); transform: translate(1px, -1px); }
+  100% { clip-path: inset(5% 0 80% 0); transform: translate(-1px, 1px); }
+}
+
+.glitch-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-wrapper::before,
+.glitch-wrapper::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+.glitch-wrapper:hover::before {
+  left: 2px;
+  text-shadow: -1px 0 var(--accent-secondary);
+  animation: glitch-anim-1 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  opacity: 1;
+}
+
+.glitch-wrapper:hover::after {
+  left: -2px;
+  text-shadow: -1px 0 var(--accent-primary);
+  animation: glitch-anim-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+  opacity: 1;
+}
+
+/* Subtle CRT Scanline */
+.crt-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%);
+  background-size: 100% 4px;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.5;
 }
 
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(26, 22, 20, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(245, 245, 220, 0.05);
-}
