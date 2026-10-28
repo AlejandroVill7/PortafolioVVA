@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Shield, Activity, Code2, Database, Globe } from 'lucide-react';
+import { Terminal, Cloud, Activity, Code2, Database, Globe } from 'lucide-react';
 import { GlitchText } from './GlitchText';
 
 export const TerminalDashboard: React.FC = () => {
@@ -16,8 +16,8 @@ export const TerminalDashboard: React.FC = () => {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-[var(--border-color)] pb-4">
           <div className="flex items-center gap-3">
-            <Shield className="text-[var(--accent-primary)]" size={24} />
-            <GlitchText text="SYS.PROFILE // SOC_ANALYST" as="h2" className="text-xl md:text-2xl font-tech font-bold text-[var(--text-main)]" />
+            <Cloud className="text-[var(--accent-primary)]" size={24} />
+            <GlitchText text="SYS.PROFILE // BACKEND_CLOUD" as="h2" className="text-xl md:text-2xl font-tech font-bold text-[var(--text-main)]" />
           </div>
           <div className="flex gap-2">
             <span className="w-3 h-3 rounded-full bg-[var(--accent-secondary)] animate-pulse"></span>
@@ -34,15 +34,15 @@ export const TerminalDashboard: React.FC = () => {
               [INIT_BIO_STREAM]
             </div>
             <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed">
-              Perfil técnico con trayectoria en el desarrollo de proyectos Full-Stack y automatización de procesos mediante Python. Mi enfoque se centra en la defensa activa y el análisis de incidentes, respaldado por entrenamiento práctico en entornos de simulación de alta complejidad (HackTheBox).
+              Estudiante de Ingeniería en Sistemas en el Instituto Tecnológico de Oaxaca (egreso previsto en 2027). Desarrollo aplicaciones web y móviles con TypeScript, React, React Native y Laravel. Trabajo con APIs REST, autenticación, control de acceso por roles y bases de datos relacionales. Actualmente preparo el examen Google Cloud Associate Cloud Engineer.
             </p>
             
             <div className="mt-4 flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-tech text-[var(--text-muted)]">
-                <span className="text-[var(--accent-secondary)]">&gt;</span> Status: <span className="text-[var(--accent-primary)]">Actively Defending</span>
+                <span className="text-[var(--accent-secondary)]">&gt;</span> Ubicación: <span className="text-[var(--accent-primary)]">Oaxaca, México</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-tech text-[var(--text-muted)]">
-                <span className="text-[var(--accent-secondary)]">&gt;</span> Clearance Level: <span className="text-white bg-[var(--accent-secondary)] px-1">Lvl 1</span>
+                <span className="text-[var(--accent-secondary)]">&gt;</span> Idiomas: <span className="text-white bg-[var(--accent-secondary)] px-1">Español / Inglés B2</span>
               </div>
             </div>
           </div>
@@ -55,12 +55,12 @@ export const TerminalDashboard: React.FC = () => {
             
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: <Terminal size={18} />, label: 'Python / Bash', type: 'Scripting' },
-                { icon: <Shield size={18} />, label: 'Incident Response', type: 'SOC' },
-                { icon: <Activity size={18} />, label: 'Log Analysis', type: 'Monitoring' },
-                { icon: <Code2 size={18} />, label: 'React / Next.js', type: 'Frontend' },
-                { icon: <Database size={18} />, label: 'Laravel / Node', type: 'Backend' },
-                { icon: <Globe size={18} />, label: 'Network Sec', type: 'Core' },
+                { icon: <Terminal size={18} />, label: 'TypeScript / JavaScript', type: 'Lenguajes' },
+                { icon: <Cloud size={18} />, label: 'Google Cloud', type: 'Certificación en preparación' },
+                { icon: <Activity size={18} />, label: 'PostgreSQL / SQLite', type: 'Datos' },
+                { icon: <Code2 size={18} />, label: 'React / Vue.js', type: 'Frontend' },
+                { icon: <Database size={18} />, label: 'Laravel / Node.js', type: 'Backend' },
+                { icon: <Globe size={18} />, label: 'REST APIs / RBAC', type: 'Integración' },
               ].map((skill, idx) => (
                 <div key={idx} className="flex items-start gap-3 p-3 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-primary)] transition-colors group">
                   <div className="text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] transition-colors mt-0.5">

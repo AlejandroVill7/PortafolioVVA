@@ -56,12 +56,12 @@ function Home() {
           </div>
         </section>
 
-        {/* --- SECTION 2: SOC INTERFACE (Bio & Skills) --- */}
+        {/* --- SECTION 2: BACKEND & CLOUD PROFILE --- */}
         <section className="w-full py-24 px-6 md:px-20 relative z-10">
           <div className="max-w-7xl mx-auto w-full gsap-fade-up">
             <div className="flex items-center gap-4 mb-12">
                <span className="font-tech text-xl text-[var(--accent-primary)]">01 //</span>
-               <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">System Profile</h3>
+               <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">Backend & Cloud</h3>
                <div className="h-px bg-[var(--border-color)] flex-grow ml-4"></div>
             </div>
             <TerminalDashboard />
