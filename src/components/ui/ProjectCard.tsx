@@ -16,10 +16,10 @@ interface ProjectCardProps {
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags, number, logo, logoAlt }) => {
   return (
-    <div className="group relative w-full glass-panel p-6 md:p-8 flex flex-col gap-4 border border-[var(--border-color)] hover:border-[var(--accent-secondary)] transition-all duration-300 overflow-hidden">
+    <div className="group relative w-full glass-panel p-6 md:p-8 flex flex-col gap-4 border border-[var(--border-color)] hover:border-[var(--accent-secondary)] overflow-hidden">
       
       {/* Background Tech Accent */}
-      <div className="absolute -right-10 -bottom-10 font-tech text-[120px] font-bold text-[var(--grid-color)] opacity-50 group-hover:text-[var(--accent-secondary)] group-hover:opacity-10 transition-colors pointer-events-none select-none">
+      <div className="absolute -right-10 -bottom-10 font-tech text-[120px] font-bold text-[var(--grid-color)] opacity-50 pointer-events-none select-none">
         {number}
       </div>
 
@@ -29,10 +29,10 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, ta
           OP_{number}
         </div>
         <div className="flex gap-2">
-           <button className="text-[var(--text-muted)] hover:text-[var(--accent-primary)] transition-colors">
+           <button className="text-[var(--text-muted)] hover:text-[var(--accent-primary)]">
               <GithubIcon />
            </button>
-           <button className="text-[var(--text-muted)] hover:text-[var(--accent-secondary)] transition-colors">
+           <button className="text-[var(--text-muted)] hover:text-[var(--accent-secondary)]">
               <ExternalLink size={18} />
            </button>
         </div>
@@ -41,7 +41,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, ta
       {/* Content */}
       <div className="flex flex-col gap-2 relative z-10 mt-4">
         {logo && <div className="w-16 h-16 rounded-xl bg-[#f5f4ef] border border-[var(--border-color)] p-2 flex items-center justify-center mb-2"><img src={logo} alt={logoAlt || `Logo de ${title}`} className="max-w-full max-h-full object-contain" /></div>}
-        <h3 className="text-2xl font-bold text-[var(--text-main)] group-hover:text-[var(--accent-secondary)] transition-colors">
+        <h3 className="text-2xl font-bold text-[var(--text-main)] group-hover:text-[var(--accent-secondary)]">
           {title}
         </h3>
         <p className="text-[var(--text-muted)] text-sm leading-relaxed">
@@ -52,14 +52,12 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, ta
       {/* Footer / Tags */}
       <div className="mt-auto pt-6 flex flex-wrap gap-2 relative z-10">
         {tags.map(tag => (
-          <span key={tag} className="text-[10px] font-tech uppercase tracking-widest px-2 py-1 bg-[var(--bg-base)] border border-[var(--border-color)] text-[var(--text-muted)] group-hover:border-[var(--accent-primary)]/50 transition-colors">
+          <span key={tag} className="text-[10px] font-tech uppercase tracking-widest px-2 py-1 bg-[var(--bg-base)] border border-[var(--border-color)] text-[var(--text-muted)] group-hover:border-[var(--accent-primary)]/50">
             {tag}
           </span>
         ))}
       </div>
 
-      {/* Glitch Overlay Effect on Hover */}
-      <div className="absolute inset-0 bg-[var(--accent-secondary)] mix-blend-overlay opacity-0 group-hover:opacity-10 pointer-events-none transition-opacity"></div>
     </div>
   );
 };

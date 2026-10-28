@@ -20,7 +20,7 @@ export const TerminalDashboard: React.FC = () => {
             <GlitchText text="SYS.PROFILE // BACKEND_CLOUD" as="h2" className="text-xl md:text-2xl font-tech font-bold text-[var(--text-main)]" />
           </div>
           <div className="flex gap-2">
-            <span className="w-3 h-3 rounded-full bg-[var(--accent-secondary)] animate-pulse"></span>
+            <span className="w-3 h-3 rounded-full bg-[var(--accent-secondary)]"></span>
             <span className="w-3 h-3 rounded-full bg-[var(--accent-primary)] opacity-50"></span>
           </div>
         </div>
@@ -62,8 +62,8 @@ export const TerminalDashboard: React.FC = () => {
                 { icon: <Database size={18} />, label: 'Laravel / Node.js', type: 'Backend' },
                 { icon: <Globe size={18} />, label: 'REST APIs / RBAC', type: 'Integración' },
               ].map((skill, idx) => (
-                <div key={idx} className="flex items-start gap-3 p-3 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-primary)] transition-colors group">
-                  <div className="text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] transition-colors mt-0.5">
+                <div key={idx} className="flex items-start gap-3 p-3 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-primary)] group">
+                  <div className="text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] mt-0.5">
                     {skill.icon}
                   </div>
                   <div className="flex flex-col">

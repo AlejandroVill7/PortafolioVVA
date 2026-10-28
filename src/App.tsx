@@ -1,6 +1,5 @@
 
 import { ThemeToggle } from './components/ui/DarkModeToggle';
-import { DedSecBackground } from './components/ui/DedSecBackground';
 import { GlitchText } from './components/ui/GlitchText';
 import { TerminalDashboard } from './components/ui/TerminalDashboard';
 import { ProjectCard } from './components/ui/ProjectCard';
@@ -23,13 +22,12 @@ function Home() {
 
   return (
       <div className="w-full relative min-h-screen selection:bg-[var(--accent-primary)] selection:text-white">
-        <DedSecBackground />
         <ThemeToggle />
 
         {/* --- SECTION 1: HERO --- */}
         <section className="w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-20 relative z-10 pt-20">
           <div className="max-w-7xl mx-auto w-full hero-content">
-            <div className="inline-block border border-[var(--accent-primary)] px-3 py-1 mb-6 rounded-sm bg-[var(--accent-primary)]/10 backdrop-blur-sm">
+            <div className="inline-block border border-[var(--accent-primary)] px-3 py-1 mb-6 rounded-sm bg-[var(--bg-surface)]">
               <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)] uppercase">Status: Online</span>
             </div>
             
@@ -69,7 +67,7 @@ function Home() {
         </section>
 
         {/* --- SECTION 3: OPERATIONS (Projects) --- */}
-        <section className="w-full py-24 px-6 md:px-20 relative z-10 bg-[var(--bg-surface)]/50 backdrop-blur-sm border-y border-[var(--border-color)]">
+        <section className="w-full py-24 px-6 md:px-20 relative z-10 bg-[var(--bg-surface)] border-y border-[var(--border-color)]">
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-center gap-4 mb-16 gsap-fade-up">
                <span className="font-tech text-xl text-[var(--accent-secondary)]">02 //</span>
@@ -78,7 +76,7 @@ function Home() {
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 projects-grid">
-              <a href="/sit-ciit/" className="project-card lg:col-span-2 group block overflow-hidden border border-[var(--accent-primary)] bg-[var(--bg-panel)] hover:border-[var(--accent-secondary)] transition-colors">
+              <a href="/sit-ciit/" className="project-card lg:col-span-2 group block overflow-hidden border border-[var(--accent-primary)] bg-[var(--bg-panel)] hover:border-[var(--accent-secondary)]">
                 <div className="grid md:grid-cols-[1.2fr_1fr]">
                   <div className="p-8 md:p-12 flex flex-col justify-center gap-5">
                     <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)]">PROYECTO DESTACADO / 01</span>
@@ -145,10 +143,9 @@ function Home() {
                 href="https://linkedin.com/in/alejandro-v-a868a334b/" 
                 target="_blank" 
                 rel="noreferrer"
-                className="group relative px-8 py-4 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-primary)] transition-colors flex items-center gap-3 overflow-hidden"
+                className="group relative px-8 py-4 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-primary)] flex items-center gap-3 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-[var(--accent-primary)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
-                <div className="relative z-10 flex items-center gap-3 text-[var(--text-main)] group-hover:text-[var(--bg-base)] transition-colors">
+                <div className="relative z-10 flex items-center gap-3 text-[var(--text-main)]">
                   <LinkedInIcon />
                   <span className="font-tech font-bold uppercase tracking-wider text-sm">LinkedIn</span>
                 </div>
@@ -158,10 +155,9 @@ function Home() {
                 href="https://github.com/AlejandroVill7" 
                 target="_blank" 
                 rel="noreferrer"
-                className="group relative px-8 py-4 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-secondary)] transition-colors flex items-center gap-3 overflow-hidden"
+                className="group relative px-8 py-4 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-secondary)] flex items-center gap-3 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-[var(--accent-secondary)] translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
-                <div className="relative z-10 flex items-center gap-3 text-[var(--text-main)] group-hover:text-[var(--bg-base)] transition-colors">
+                <div className="relative z-10 flex items-center gap-3 text-[var(--text-main)]">
                   <GitHubIcon />
                   <span className="font-tech font-bold uppercase tracking-wider text-sm">GitHub</span>
                 </div>

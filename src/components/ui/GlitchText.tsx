@@ -8,7 +8,7 @@ interface GlitchTextProps {
 
 export const GlitchText: React.FC<GlitchTextProps> = ({ text, as: Component = 'h1', className = '' }) => {
   return (
-    <Component className={`glitch-wrapper ${className}`} data-text={text}>
+    <Component className={`${Component === 'h1' ? 'glitch-wrapper' : ''} ${className}`} data-text={Component === 'h1' ? text : undefined}>
       {text}
     </Component>
   );

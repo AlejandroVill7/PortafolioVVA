@@ -15,14 +15,14 @@ export const ThemeToggle: React.FC = () => {
   return (
     <button 
       onClick={() => setIsDark(!isDark)}
-      className="fixed top-6 right-6 z-[200] flex items-center gap-2 p-2 px-4 rounded-sm bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] shadow-lg hover:border-[var(--accent-primary)] transition-all font-tech group"
+      className="fixed top-6 right-6 z-[200] flex items-center gap-2 p-2 px-4 rounded-sm bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] shadow-lg hover:border-[var(--accent-primary)] font-tech group"
       aria-label="Toggle Theme"
     >
       <Terminal size={14} className="text-[var(--accent-primary)]" />
       <span className="text-xs tracking-widest uppercase">
         sys.{isDark ? 'dark' : 'light'}
       </span>
-      <div className="ml-2 w-2 h-2 rounded-full animate-pulse" style={{backgroundColor: isDark ? 'var(--accent-secondary)' : 'var(--accent-primary)'}}></div>
+      <div className="ml-2 w-2 h-2 rounded-full" style={{backgroundColor: isDark ? 'var(--accent-secondary)' : 'var(--accent-primary)'}}></div>
     </button>
   );
 };
