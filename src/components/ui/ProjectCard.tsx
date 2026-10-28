@@ -10,9 +10,11 @@ interface ProjectCardProps {
   description: string;
   tags: string[];
   number: string;
+  logo?: string;
+  logoAlt?: string;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags, number }) => {
+export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, tags, number, logo, logoAlt }) => {
   return (
     <div className="group relative w-full glass-panel p-6 md:p-8 flex flex-col gap-4 border border-[var(--border-color)] hover:border-[var(--accent-secondary)] transition-all duration-300 overflow-hidden">
       
@@ -38,6 +40,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ title, description, ta
 
       {/* Content */}
       <div className="flex flex-col gap-2 relative z-10 mt-4">
+        {logo && <div className="w-16 h-16 rounded-xl bg-[#f5f4ef] border border-[var(--border-color)] p-2 flex items-center justify-center mb-2"><img src={logo} alt={logoAlt || `Logo de ${title}`} className="max-w-full max-h-full object-contain" /></div>}
         <h3 className="text-2xl font-bold text-[var(--text-main)] group-hover:text-[var(--accent-secondary)] transition-colors">
           {title}
         </h3>

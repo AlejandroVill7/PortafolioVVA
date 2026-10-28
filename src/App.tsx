@@ -93,6 +93,8 @@ function Home() {
                 <ProjectCard 
                   number="01"
                   title="Zenda (SIT-CIIT)"
+                  logo="/sit-ciit/zenda-logo-claro.png"
+                  logoAlt="Logo de Zenda"
                   description="Aplicación móvil Expo/React Native para monitoreo de carga, captura de sensores y almacenamiento SQLite durante fallas de conectividad. También desarrollé interfaces web y el mapa ferroviario en Leaflet. Ganador de etapa regional HackaTec TecNM 2026."
                   tags={['React Native', 'TypeScript', 'SQLite', 'Leaflet']}
                 />
@@ -117,6 +119,8 @@ function Home() {
                 <ProjectCard
                   number="04"
                   title="BalaaYu Store · 2025"
+                  logo="/projects/balaayu-logo.png"
+                  logoAlt="Logo de BalaaYu Store"
                   description="Tienda en línea de barro negro, rojo y verde de Atzompa, Oaxaca, desarrollada con Angular."
                   tags={['Angular', 'E-commerce', 'Atzompa', '2025']}
                 />
