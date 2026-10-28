@@ -103,6 +103,8 @@ function Home() {
                 <ProjectCard 
                   number="02"
                   title="BachesITO"
+                  logo="/projects/bachesito-logo.png"
+                  logoAlt="Logo de BachesITO"
                   description="Lideré la arquitectura y el desarrollo de una plataforma de reportes de infraestructura urbana con interfaces públicas y administrativas. Primer lugar en HackaTec 2026, etapa local."
                   tags={['Full-Stack', 'PostgreSQL', 'HackaTec']}
                 />
