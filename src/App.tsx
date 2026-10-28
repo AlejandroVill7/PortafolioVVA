@@ -40,7 +40,7 @@ function Home() {
                 className="min-w-0 break-words text-5xl md:text-7xl lg:text-[88px] font-black leading-none tracking-tighter text-[var(--text-main)]"
               />
               <div className="shrink-0 w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 overflow-hidden rounded-full border-4 border-[var(--accent-primary)] shadow-[0_0_35px_var(--accent-primary)]">
-                <img src="/fotoperfil.jpeg" alt="Retrato de Alejandro Villegas Velázquez" className="w-full h-full object-cover object-[center_42%]" />
+                <img src="/fotoperfil.jpeg" alt="Retrato de Alejandro Villegas Velázquez" className="w-full h-full object-cover object-[center_62%]" />
               </div>
             </div>
             
@@ -111,6 +111,14 @@ function Home() {
                   title="Comalli"
                   description="SaaS multi-sucursal para restaurantes con Laravel, Vue.js e Inertia.js; implementé control de acceso por roles para distintos flujos de trabajo."
                   tags={['Laravel', 'Vue.js', 'Inertia.js', 'RBAC']}
+                />
+              </div>
+              <div className="project-card">
+                <ProjectCard
+                  number="04"
+                  title="BalaaYu Store · 2025"
+                  description="Tienda en línea de barro negro, rojo y verde de Atzompa, Oaxaca, desarrollada con Angular."
+                  tags={['Angular', 'E-commerce', 'Atzompa', '2025']}
                 />
               </div>
             </div>
