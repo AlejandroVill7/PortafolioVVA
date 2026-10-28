@@ -1,62 +1,17 @@
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { SmoothScroll } from './components/layout/SmoothScroll';
 import { ThemeToggle } from './components/ui/DarkModeToggle';
 import { DedSecBackground } from './components/ui/DedSecBackground';
 import { GlitchText } from './components/ui/GlitchText';
 import { TerminalDashboard } from './components/ui/TerminalDashboard';
 import { ProjectCard } from './components/ui/ProjectCard';
-
-gsap.registerPlugin(ScrollTrigger);
+import SitCiit from './SitCiit';
 
 function App() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Hero Animations
-      gsap.from('.hero-content > *', {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.15,
-        ease: 'power3.out',
-        delay: 0.2
-      });
+  if (window.location.pathname.replace(/\/$/, '') === '/sit-ciit') return <SitCiit />;
+  return <Home />;
+}
 
-      // Section Fade-ins
-      gsap.utils.toArray('.gsap-fade-up').forEach((elem: any) => {
-        gsap.from(elem, {
-          y: 80,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: elem,
-            start: 'top 85%',
-          }
-        });
-      });
-
-      // Project Cards Stagger
-      gsap.from('.project-card', {
-        y: 50,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.projects-grid',
-          start: 'top 80%',
-        }
-      });
-
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
+function Home() {
 
   const GitHubIcon = () => (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
@@ -67,8 +22,7 @@ function App() {
   );
 
   return (
-    <SmoothScroll>
-      <div ref={containerRef} className="w-full relative min-h-screen selection:bg-[var(--accent-primary)] selection:text-white">
+      <div className="w-full relative min-h-screen selection:bg-[var(--accent-primary)] selection:text-white">
         <DedSecBackground />
         <ThemeToggle />
 
@@ -79,20 +33,25 @@ function App() {
               <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)] uppercase">Status: Online</span>
             </div>
             
-            <GlitchText 
-              text="ALEJANDRO VILLEGAS" 
-              as="h1" 
-              className="text-6xl md:text-8xl lg:text-[120px] font-black leading-none tracking-tighter text-[var(--text-main)] mb-6"
-            />
+            <div className="flex flex-col-reverse lg:flex-row lg:items-center gap-8 lg:gap-14 mb-6">
+              <GlitchText
+                text="ALEJANDRO VILLEGAS VELÁZQUEZ"
+                as="h1"
+                className="min-w-0 break-words text-5xl md:text-7xl lg:text-[88px] font-black leading-none tracking-tighter text-[var(--text-main)]"
+              />
+              <div className="shrink-0 w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 overflow-hidden rounded-full border-4 border-[var(--accent-primary)] shadow-[0_0_35px_var(--accent-primary)]">
+                <img src="/fotoperfil.jpeg" alt="Retrato de Alejandro Villegas Velázquez" className="w-full h-full object-cover object-[center_42%]" />
+              </div>
+            </div>
             
             <div className="flex flex-col md:flex-row gap-6 md:items-center">
               <h2 className="text-2xl md:text-4xl text-[var(--text-muted)] font-light">
-                Full-Stack Developer & <span className="text-[var(--accent-secondary)] font-bold">SOC Analyst</span>
+                Software Developer & <span className="text-[var(--accent-secondary)] font-bold">Systems Engineering Student</span>
               </h2>
             </div>
             
             <p className="mt-8 max-w-2xl text-lg text-[var(--text-muted)] leading-relaxed">
-              Construyendo arquitecturas robustas y defendiendo infraestructuras críticas. Combinando desarrollo moderno con operaciones de seguridad ofensiva y defensiva.
+              Desarrollo aplicaciones web y móviles con TypeScript, React, React Native y Laravel. Trabajo con interfaces reutilizables, APIs REST, bases de datos y visualización geoespacial.
             </p>
           </div>
         </section>
@@ -119,20 +78,39 @@ function App() {
             </div>
             
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 projects-grid">
+              <a href="/sit-ciit/" className="project-card lg:col-span-2 group block overflow-hidden border border-[var(--accent-primary)] bg-[var(--bg-panel)] hover:border-[var(--accent-secondary)] transition-colors">
+                <div className="grid md:grid-cols-[1.2fr_1fr]">
+                  <div className="p-8 md:p-12 flex flex-col justify-center gap-5">
+                    <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)]">PROYECTO DESTACADO / 01</span>
+                    <h3 className="text-3xl md:text-5xl font-bold">SIT-CIIT</h3>
+                    <p className="text-[var(--text-muted)] max-w-xl leading-relaxed">Sistema integral de monitoreo ferroviario: telemetría, alertas, centro de control, operación móvil y seguimiento de envíos.</p>
+                    <span className="font-tech text-sm text-[var(--accent-secondary)]">EXPLORAR EL PROYECTO →</span>
+                  </div>
+                  <img src="/sit-ciit/landing.png" alt="Portal público de SIT-CIIT en ejecución" className="w-full h-64 md:h-full object-cover object-top" />
+                </div>
+              </a>
               <div className="project-card">
                 <ProjectCard 
                   number="01"
-                  title="Restaurant SaaS Platform"
-                  description="Plataforma multi-tenant para gestión de restaurantes, integrando un frontend interactivo y un backend robusto en Laravel."
-                  tags={['React', 'Laravel', 'Tailwind']}
+                  title="Zenda (SIT-CIIT)"
+                  description="Aplicación móvil Expo/React Native para monitoreo de carga, captura de sensores y almacenamiento SQLite durante fallas de conectividad. También desarrollé interfaces web y el mapa ferroviario en Leaflet. Ganador de etapa regional HackaTec TecNM 2026."
+                  tags={['React Native', 'TypeScript', 'SQLite', 'Leaflet']}
                 />
               </div>
               <div className="project-card">
                 <ProjectCard 
                   number="02"
-                  title="SOC Monitoring Tool"
-                  description="Herramienta interna para análisis de logs y correlación de eventos de seguridad basada en scripts de Python."
-                  tags={['Python', 'Bash', 'Security']}
+                  title="BachesITO"
+                  description="Lideré la arquitectura y el desarrollo de una plataforma de reportes de infraestructura urbana con interfaces públicas y administrativas. Primer lugar en HackaTec 2026, etapa local."
+                  tags={['Full-Stack', 'PostgreSQL', 'HackaTec']}
+                />
+              </div>
+              <div className="project-card">
+                <ProjectCard
+                  number="03"
+                  title="Comalli"
+                  description="SaaS multi-sucursal para restaurantes con Laravel, Vue.js e Inertia.js; implementé control de acceso por roles para distintos flujos de trabajo."
+                  tags={['Laravel', 'Vue.js', 'Inertia.js', 'RBAC']}
                 />
               </div>
             </div>
@@ -145,7 +123,7 @@ function App() {
             <GlitchText text="ESTABLECER CONEXIÓN" as="h3" className="text-4xl md:text-6xl font-bold uppercase tracking-tighter" />
             
             <p className="text-[var(--text-muted)] text-lg max-w-lg">
-              Buscando oportunidades como SOC Analyst o roles técnicos desafiantes. La red está abierta para colaboraciones.
+              Abierto a oportunidades de desarrollo de software y colaboraciones en aplicaciones web y móviles. Escríbeme a alejandro.v.v.dev@gmail.com.
             </p>
 
             <div className="flex gap-6 mt-4">
@@ -183,7 +161,6 @@ function App() {
         </section>
 
       </div>
-    </SmoothScroll>
   );
 }
 

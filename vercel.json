@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/sit-ciit", "destination": "/index.html" },
+    { "source": "/sit-ciit/", "destination": "/index.html" }
+  ]
+}
