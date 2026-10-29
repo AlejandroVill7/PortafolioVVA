@@ -3,6 +3,7 @@ import { ThemeToggle } from './components/ui/DarkModeToggle';
 import { GlitchText } from './components/ui/GlitchText';
 import { TerminalDashboard } from './components/ui/TerminalDashboard';
 import { FeaturedProject } from './components/ui/FeaturedProject';
+import { SectionNav } from './components/ui/SectionNav';
 import Bachesito from './Bachesito';
 import Comalli from './Comalli';
 import SitCiit from './SitCiit';
@@ -27,9 +28,10 @@ function Home() {
   return (
       <div className="w-full relative min-h-screen selection:bg-[var(--accent-primary)] selection:text-white">
         <ThemeToggle />
+        <SectionNav />
 
         {/* --- SECTION 1: HERO --- */}
-        <section className="w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-20 relative z-10 pt-20">
+        <section id="sobre-mi" className="w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-20 lg:pl-44 relative z-10 pt-24 md:pt-20">
           <div className="max-w-7xl mx-auto w-full hero-content">
             <div className="inline-block border border-[var(--accent-primary)] px-3 py-1 mb-6 rounded-sm bg-[var(--bg-surface)]">
               <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)] uppercase">Status: Online</span>
@@ -59,7 +61,7 @@ function Home() {
         </section>
 
         {/* --- SECTION 2: BACKEND & CLOUD PROFILE --- */}
-        <section className="w-full py-24 px-6 md:px-20 relative z-10">
+        <section id="tecnologias" className="w-full py-24 px-6 md:px-20 lg:pl-44 relative z-10">
           <div className="max-w-7xl mx-auto w-full gsap-fade-up">
             <div className="flex items-center gap-4 mb-12">
                <span className="font-tech text-xl text-[var(--accent-primary)]">01 //</span>
@@ -71,7 +73,7 @@ function Home() {
         </section>
 
         {/* --- SECTION 3: OPERATIONS (Projects) --- */}
-        <section className="w-full py-24 px-6 md:px-20 relative z-10 bg-[var(--bg-surface)] border-y border-[var(--border-color)]">
+        <section id="proyectos" className="w-full py-24 px-6 md:px-20 lg:pl-44 relative z-10 bg-[var(--bg-surface)] border-y border-[var(--border-color)]">
           <div className="max-w-7xl mx-auto w-full">
             <div className="flex items-center gap-4 mb-16 gsap-fade-up">
                <span className="font-tech text-xl text-[var(--accent-secondary)]">02 //</span>
@@ -80,16 +82,16 @@ function Home() {
             </div>
             
             <div className="grid gap-8 projects-grid">
-              <FeaturedProject number="01" title="Zenda" subtitle="SIT-CIIT · monitoreo ferroviario" logo="/sit-ciit/zenda-logo-claro.png" href="/sit-ciit/" description="Sistema distribuido para monitoreo del Corredor Interoceánico: aplicación móvil que simula y captura sensores, telemetría por MQTT, centro de control con mapas y alertas, y portal de seguimiento de envíos." tags={['React Native', 'React', 'Fastify', 'MQTT', 'TimescaleDB']} slides={[{src:'/sit-ciit/landing.png',alt:'Portal público de Zenda',caption:'Portal de seguimiento'},{src:'/sit-ciit/dashboard-mapa.png',alt:'Mapa del centro de control',caption:'Centro de control y mapa'},{src:'/sit-ciit/mobile-sensores.png',alt:'Métricas simuladas del móvil',caption:'Modo Nodo en móvil',portrait:true}]} />
-              <FeaturedProject number="02" title="BachesITO" logo="/projects/bachesito-logo.png" href="/bachesito/" description="Plataforma cívica para reportar baches desde el teléfono y gestionar su atención desde un panel gubernamental. Incluye mapa, evidencia fotográfica, seguimiento de estados, prioridades y asignación operativa." tags={['React', 'Laravel', 'PWA', 'Mapas', 'HackaTec 2026']} slides={[{src:'/bachesito/ciudadano-reportes.png',alt:'Reportes en la aplicación ciudadana',caption:'Aplicación ciudadana',portrait:true},{src:'/bachesito/gobierno-dashboard.png',alt:'Panel gubernamental con reportes',caption:'Panel de gobierno'},{src:'/bachesito/gobierno-reportes.png',alt:'Listado de reportes',caption:'Gestión de reportes'}]} />
-              <FeaturedProject number="03" title="Comalli" logo="/comalli/logo.png" href="/comalli/" description="SaaS de gestión para restaurantes y franquicias. Conecta administración, sucursales, inventario, mesas, punto de venta, cocina y menú público para clientes mediante roles y aislamiento de datos por franquicia." tags={['Laravel', 'Vue', 'Inertia', 'Multi-tenant', 'POS']} slides={[{src:'/comalli/admin.png',alt:'Panel de administración Comalli',caption:'Administración'},{src:'/comalli/cocina.png',alt:'Vista de cocina Comalli',caption:'Cocina'},{src:'/comalli/mesero.png',alt:'Punto de venta para meseros',caption:'Punto de venta'},{src:'/comalli/cliente.png',alt:'Menú público para clientes',caption:'Menú del cliente'}]} />
-              <FeaturedProject number="04" title="BalaaYu Store" subtitle="Tienda de artesanía oaxaqueña · 2025" logo="/projects/balaayu-logo.png" description="Tienda en línea dedicada al barro negro de San Bartolo Coyotepec, rojo de San Marcos Tlapazola y verde de Santa María Atzompa, Oaxaca. Presenta el origen artesanal de cada comunidad, un catálogo con productos, precios y existencias, carrito de compra y acceso de usuarios." tags={['Angular 19', 'Firebase', 'Catálogo', 'Artesanía', '2025']} slides={[{src:'/balaayu/inicio.png',alt:'Inicio de BalaaYu Store',caption:'Inicio y artesanía'},{src:'/balaayu/catalogo.png',alt:'Catálogo de barro de BalaaYu',caption:'Catálogo de productos'}]} />
+              <FeaturedProject number="01" title="Zenda" subtitle="SIT-CIIT · monitoreo ferroviario" logo="/sit-ciit/zenda-logo-claro.png" href="/sit-ciit/" description="Sistema distribuido para monitoreo del Corredor Interoceánico: aplicación móvil que simula y captura sensores, telemetría por MQTT, centro de control con mapas y alertas, y portal de seguimiento de envíos." tags={['React Native', 'React', 'Fastify', 'MQTT', 'TimescaleDB']} slides={[{src:'/sit-ciit/landing.png',alt:'Portal público de Zenda',caption:'Portal de seguimiento'},{src:'/sit-ciit/dashboard-mapa.png',alt:'Mapa del centro de control',caption:'Centro de control y mapa'},{src:'/sit-ciit/dashboard-conectividad.png',alt:'Conectividad del centro de control',caption:'Conectividad'}]} />
+              <FeaturedProject number="02" title="BachesITO" logo="/projects/bachesito-logo.png" href="/bachesito/" description="Plataforma cívica para reportar baches desde el teléfono y gestionar su atención desde un panel gubernamental. Incluye mapa, evidencia fotográfica, seguimiento de estados, prioridades y asignación operativa." tags={['React', 'Laravel', 'PWA', 'Mapas', 'HackaTec 2026']} slides={[{src:'/bachesito/gobierno-dashboard.png',alt:'Panel gubernamental con reportes',caption:'Panel de gobierno'},{src:'/bachesito/gobierno-reportes.png',alt:'Listado de reportes',caption:'Gestión de reportes'}]} />
+              <FeaturedProject number="03" title="Comalli" logo="/comalli/logo.png" href="/comalli/" description="SaaS de gestión para restaurantes y franquicias. Conecta administración, sucursales, inventario, mesas, punto de venta, cocina y menú público para clientes mediante roles y aislamiento de datos por franquicia." tags={['Laravel', 'Vue', 'Inertia', 'Multi-tenant', 'POS']} slides={[{src:'/comalli/admin.png',alt:'Panel de administración Comalli',caption:'Administración'},{src:'/comalli/cocina.png',alt:'Vista de cocina Comalli',caption:'Cocina'},{src:'/comalli/mesero.png',alt:'Punto de venta para meseros',caption:'Punto de venta'}]} />
+              <FeaturedProject number="04" title="BalaaYu Store" subtitle="Tienda de artesanía oaxaqueña · 2025" logo="/projects/balaayu-logo.png" darkLogoWhite description="Tienda en línea dedicada al barro negro de San Bartolo Coyotepec, rojo de San Marcos Tlapazola y verde de Santa María Atzompa, Oaxaca. Presenta el origen artesanal de cada comunidad, un catálogo con productos, precios y existencias, carrito de compra y acceso de usuarios." tags={['Angular 19', 'Firebase', 'Catálogo', 'Artesanía', '2025']} slides={[{src:'/balaayu/inicio.png',alt:'Inicio de BalaaYu Store',caption:'Inicio y artesanía'},{src:'/balaayu/catalogo.png',alt:'Catálogo de barro de BalaaYu',caption:'Catálogo de productos'}]} />
             </div>
           </div>
         </section>
 
         {/* --- SECTION 4: SECURE COMMS (Contact) --- */}
-        <section className="w-full py-32 px-6 md:px-20 relative z-10">
+        <section id="contacto" className="w-full py-32 px-6 md:px-20 lg:pl-44 relative z-10">
           <div className="max-w-4xl mx-auto w-full text-center flex flex-col items-center gap-12 gsap-fade-up">
             <GlitchText text="ESTABLECER CONEXIÓN" as="h3" className="text-4xl md:text-6xl font-bold uppercase tracking-tighter" />
             
