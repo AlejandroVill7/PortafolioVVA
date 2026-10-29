@@ -3,6 +3,7 @@ import { ThemeToggle } from './components/ui/DarkModeToggle';
 import { GlitchText } from './components/ui/GlitchText';
 import { TerminalDashboard } from './components/ui/TerminalDashboard';
 import { FeaturedProject } from './components/ui/FeaturedProject';
+import { Aquarium } from './components/ui/Aquarium';
 import { SectionNav } from './components/ui/SectionNav';
 import Bachesito from './Bachesito';
 import Comalli from './Comalli';
@@ -31,8 +32,9 @@ function Home() {
         <SectionNav />
 
         {/* --- SECTION 1: HERO --- */}
-        <section id="sobre-mi" className="w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-20 lg:pl-44 relative z-10 pt-24 md:pt-20">
-          <div className="max-w-7xl mx-auto w-full hero-content">
+        <section id="sobre-mi" className="overflow-hidden isolate w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-20 lg:pl-44 relative z-10 pt-24 md:pt-20">
+          <Aquarium />
+          <div className="max-w-7xl mx-auto w-full hero-content relative z-10">
             <div className="inline-block border border-[var(--accent-primary)] px-3 py-1 mb-6 rounded-sm bg-[var(--bg-surface)]">
               <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)] uppercase">Status: Online</span>
             </div>
