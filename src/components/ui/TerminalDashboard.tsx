@@ -1,5 +1,6 @@
+import { capabilityGroups, profileSummary } from '../../profile';
 import React from 'react';
-import { Terminal, Cloud, Activity, Code2, Database, Globe } from 'lucide-react';
+import { Cloud, Code2 } from 'lucide-react';
 import { GlitchText } from './GlitchText';
 
 export const TerminalDashboard: React.FC = () => {
@@ -34,7 +35,7 @@ export const TerminalDashboard: React.FC = () => {
               [INIT_BIO_STREAM]
             </div>
             <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed">
-              Estudiante de Ingeniería en Sistemas en el Instituto Tecnológico de Oaxaca (egreso previsto en 2027). Desarrollo aplicaciones web y móviles con TypeScript, React, React Native y Laravel. Trabajo con APIs REST, autenticación, control de acceso por roles y bases de datos relacionales. Actualmente preparo el examen Google Cloud Associate Cloud Engineer.
+              Estudiante de Ingeniería en Sistemas en el Instituto Tecnológico de Oaxaca (egreso previsto en 2027). {profileSummary} Actualmente preparo el examen Google Cloud Associate Cloud Engineer.
             </p>
             
             <div className="mt-4 flex flex-col gap-2">
@@ -42,7 +43,7 @@ export const TerminalDashboard: React.FC = () => {
                 <span className="text-[var(--accent-secondary)]">&gt;</span> Ubicación: <span className="text-[var(--accent-primary)]">Oaxaca, México</span>
               </div>
               <div className="flex items-center gap-2 text-xs font-tech text-[var(--text-muted)]">
-                <span className="text-[var(--accent-secondary)]">&gt;</span> Idiomas: <span className="text-white bg-[var(--accent-secondary)] px-1">Español / Inglés B2</span>
+                <span className="text-[var(--accent-secondary)]">&gt;</span> Idiomas: <span className="text-white bg-[var(--accent-secondary)] px-1">Español nativo / Inglés B2 (autoevaluado)</span>
               </div>
             </div>
           </div>
@@ -54,17 +55,10 @@ export const TerminalDashboard: React.FC = () => {
             </div>
             
             <div className="grid grid-cols-2 gap-4">
-              {[
-                { icon: <Terminal size={18} />, label: 'TypeScript / JavaScript', type: 'Lenguajes' },
-                { icon: <Cloud size={18} />, label: 'Google Cloud', type: 'Certificación en preparación' },
-                { icon: <Activity size={18} />, label: 'PostgreSQL / SQLite', type: 'Datos' },
-                { icon: <Code2 size={18} />, label: 'React / Vue.js', type: 'Frontend' },
-                { icon: <Database size={18} />, label: 'Laravel / Node.js', type: 'Backend' },
-                { icon: <Globe size={18} />, label: 'REST APIs / RBAC', type: 'Integración' },
-              ].map((skill, idx) => (
+              {capabilityGroups.map((skill, idx) => (
                 <div key={idx} className="flex items-start gap-3 p-3 bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-primary)] group">
                   <div className="text-[var(--text-muted)] group-hover:text-[var(--accent-primary)] mt-0.5">
-                    {skill.icon}
+                    <Code2 size={18} />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-sm font-bold text-[var(--text-main)]">{skill.label}</span>

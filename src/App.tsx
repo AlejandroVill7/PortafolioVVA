@@ -1,3 +1,4 @@
+import { profileSummary } from './profile';
 import { TechCloud } from './components/ui/TechCloud';
 import { lazy, Suspense } from 'react';
 import { LoadedImage } from './components/ui/LoadedImage';
@@ -62,7 +63,7 @@ function Home() {
             </div>
             
             <p className="mt-8 mx-auto max-w-2xl text-lg text-[var(--text-muted)] leading-relaxed">
-              Desarrollo aplicaciones web y móviles con TypeScript, React, React Native y Laravel. Trabajo con interfaces reutilizables, APIs REST, bases de datos y visualización geoespacial.
+              {profileSummary}
             </p>
           </div>
         </section>
