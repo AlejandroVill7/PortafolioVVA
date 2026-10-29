@@ -1,3 +1,4 @@
+import { TechCloud } from './components/ui/TechCloud';
 import { lazy, Suspense } from 'react';
 import { LoadedImage } from './components/ui/LoadedImage';
 
@@ -74,7 +75,7 @@ function Home() {
                <h3 className="text-3xl md:text-5xl font-bold uppercase tracking-tight">Backend & Cloud</h3>
                <div className="h-px bg-[var(--border-color)] flex-grow ml-4"></div>
             </div>
-            <TerminalDashboard />
+            <div className="grid xl:grid-cols-[1fr_360px] gap-8 items-center"><TerminalDashboard /><TechCloud /></div>
           </div>
         </section>
 

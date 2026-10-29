@@ -46,7 +46,7 @@ export function FeaturedProject({ title, subtitle, logo, description, tags, slid
     const loaded = nextImage.then(() => true, () => false);
     const timer = window.setTimeout(async () => {
       if (await loaded && !cancelled && !document.hidden) setIndex(next);
-    }, 3500);
+    }, 6500);
     return () => { cancelled = true; window.clearTimeout(timer); };
   }, [visible, pageVisible, index, slides]);
   const slide = slides[index];
@@ -59,7 +59,7 @@ export function FeaturedProject({ title, subtitle, logo, description, tags, slid
   return <article ref={projectRef} className="border border-[var(--border-color)] bg-[var(--bg-panel)] overflow-hidden grid lg:grid-cols-[1fr_1.05fr]">
     {href ? <a href={href} className="block p-7 md:p-10 hover:bg-[var(--bg-surface)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--accent-primary)]" aria-label={`Explorar ${title}`}>{content}</a> : <div className="p-7 md:p-10">{content}</div>}
     <div className="flex flex-col min-w-0 border-t lg:border-t-0 lg:border-l border-[var(--border-color)]">
-      <div className="h-64 md:h-80 bg-[var(--bg-base)] overflow-hidden relative">{!ready && <span className="image-skeleton absolute inset-0" aria-label="Cargando imágenes" />}{ready && <img src={slide.src} alt={slide.alt} className="project-slide w-full h-full object-cover object-top" decoding="async" />}</div>
+      <div className={`browser-preview ${visible && pageVisible ? "preview-playing" : ""}`}><div className="browser-toolbar" aria-hidden="true"><span/><span/><span/><div>{title} · vista previa</div></div><div className="browser-viewport bg-[var(--bg-base)] overflow-hidden relative">{!ready && <span className="image-skeleton absolute inset-0" aria-label="Cargando imágenes" />}{ready && <img src={slide.src} alt={slide.alt} key={slide.src} className="project-slide browser-scroll-image" decoding="async" />}</div></div>
       <div className="flex items-center justify-between gap-3 px-4 py-3 min-h-16"><p className="text-sm font-semibold truncate">{slide.caption}</p><div className="flex gap-1.5" aria-label={`Imagen ${index + 1} de ${slides.length}`}>{slides.map((item, position) => <span key={item.src} className={`w-1.5 h-1.5 rounded-full ${position === index ? 'bg-[var(--accent-primary)]' : 'bg-[var(--border-color)]'}`} />)}</div></div>
     </div>
   </article>;
