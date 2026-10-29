@@ -2,11 +2,15 @@
 import { ThemeToggle } from './components/ui/DarkModeToggle';
 import { GlitchText } from './components/ui/GlitchText';
 import { TerminalDashboard } from './components/ui/TerminalDashboard';
-import { ProjectCard } from './components/ui/ProjectCard';
+import { FeaturedProject } from './components/ui/FeaturedProject';
+import Bachesito from './Bachesito';
+import Comalli from './Comalli';
 import SitCiit from './SitCiit';
 
 function App() {
   if (window.location.pathname.replace(/\/$/, '') === '/sit-ciit') return <SitCiit />;
+  if (window.location.pathname.replace(/\/$/, '') === '/bachesito') return <Bachesito />;
+  if (window.location.pathname.replace(/\/$/, '') === '/comalli') return <Comalli />;
   return <Home />;
 }
 
@@ -75,56 +79,11 @@ function Home() {
                <div className="h-px bg-[var(--border-color)] flex-grow ml-4"></div>
             </div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 projects-grid">
-              <a href="/sit-ciit/" className="project-card lg:col-span-2 group block overflow-hidden border border-[var(--accent-primary)] bg-[var(--bg-panel)] hover:border-[var(--accent-secondary)]">
-                <div className="grid md:grid-cols-[1.2fr_1fr]">
-                  <div className="p-8 md:p-12 flex flex-col justify-center gap-5">
-                    <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)]">PROYECTO DESTACADO / 01</span>
-                    <h3 className="text-3xl md:text-5xl font-bold">SIT-CIIT</h3>
-                    <p className="text-[var(--text-muted)] max-w-xl leading-relaxed">Sistema integral de monitoreo ferroviario: telemetría, alertas, centro de control, operación móvil y seguimiento de envíos.</p>
-                    <span className="font-tech text-sm text-[var(--accent-secondary)]">EXPLORAR EL PROYECTO →</span>
-                  </div>
-                  <img src="/sit-ciit/landing.png" alt="Portal público de SIT-CIIT en ejecución" className="w-full h-64 md:h-full object-cover object-top" />
-                </div>
-              </a>
-              <div className="project-card">
-                <ProjectCard 
-                  number="01"
-                  title="Zenda (SIT-CIIT)"
-                  logo="/sit-ciit/zenda-logo-claro.png"
-                  logoAlt="Logo de Zenda"
-                  description="Aplicación móvil Expo/React Native para monitoreo de carga, captura de sensores y almacenamiento SQLite durante fallas de conectividad. También desarrollé interfaces web y el mapa ferroviario en Leaflet. Ganador de etapa regional HackaTec TecNM 2026."
-                  tags={['React Native', 'TypeScript', 'SQLite', 'Leaflet']}
-                />
-              </div>
-              <div className="project-card">
-                <ProjectCard 
-                  number="02"
-                  title="BachesITO"
-                  logo="/projects/bachesito-logo.png"
-                  logoAlt="Logo de BachesITO"
-                  description="Lideré la arquitectura y el desarrollo de una plataforma de reportes de infraestructura urbana con interfaces públicas y administrativas. Primer lugar en HackaTec 2026, etapa local."
-                  tags={['Full-Stack', 'PostgreSQL', 'HackaTec']}
-                />
-              </div>
-              <div className="project-card">
-                <ProjectCard
-                  number="03"
-                  title="Comalli"
-                  description="SaaS multi-sucursal para restaurantes con Laravel, Vue.js e Inertia.js; implementé control de acceso por roles para distintos flujos de trabajo."
-                  tags={['Laravel', 'Vue.js', 'Inertia.js', 'RBAC']}
-                />
-              </div>
-              <div className="project-card">
-                <ProjectCard
-                  number="04"
-                  title="BalaaYu Store · 2025"
-                  logo="/projects/balaayu-logo.png"
-                  logoAlt="Logo de BalaaYu Store"
-                  description="Tienda en línea de barro negro, rojo y verde de Atzompa, Oaxaca, desarrollada con Angular."
-                  tags={['Angular', 'E-commerce', 'Atzompa', '2025']}
-                />
-              </div>
+            <div className="grid gap-8 projects-grid">
+              <FeaturedProject number="01" title="Zenda" subtitle="SIT-CIIT · monitoreo ferroviario" logo="/sit-ciit/zenda-logo-claro.png" href="/sit-ciit/" description="Sistema distribuido para monitoreo del Corredor Interoceánico: aplicación móvil que simula y captura sensores, telemetría por MQTT, centro de control con mapas y alertas, y portal de seguimiento de envíos." tags={['React Native', 'React', 'Fastify', 'MQTT', 'TimescaleDB']} slides={[{src:'/sit-ciit/landing.png',alt:'Portal público de Zenda',caption:'Portal de seguimiento'},{src:'/sit-ciit/dashboard-mapa.png',alt:'Mapa del centro de control',caption:'Centro de control y mapa'},{src:'/sit-ciit/mobile-sensores.png',alt:'Métricas simuladas del móvil',caption:'Modo Nodo en móvil',portrait:true}]} />
+              <FeaturedProject number="02" title="BachesITO" logo="/projects/bachesito-logo.png" href="/bachesito/" description="Plataforma cívica para reportar baches desde el teléfono y gestionar su atención desde un panel gubernamental. Incluye mapa, evidencia fotográfica, seguimiento de estados, prioridades y asignación operativa." tags={['React', 'Laravel', 'PWA', 'Mapas', 'HackaTec 2026']} slides={[{src:'/bachesito/ciudadano-reportes.png',alt:'Reportes en la aplicación ciudadana',caption:'Aplicación ciudadana',portrait:true},{src:'/bachesito/gobierno-dashboard.png',alt:'Panel gubernamental con reportes',caption:'Panel de gobierno'},{src:'/bachesito/gobierno-reportes.png',alt:'Listado de reportes',caption:'Gestión de reportes'}]} />
+              <FeaturedProject number="03" title="Comalli" logo="/comalli/logo.png" href="/comalli/" description="SaaS de gestión para restaurantes y franquicias. Conecta administración, sucursales, inventario, mesas, punto de venta, cocina y menú público para clientes mediante roles y aislamiento de datos por franquicia." tags={['Laravel', 'Vue', 'Inertia', 'Multi-tenant', 'POS']} slides={[{src:'/comalli/admin.png',alt:'Panel de administración Comalli',caption:'Administración'},{src:'/comalli/cocina.png',alt:'Vista de cocina Comalli',caption:'Cocina'},{src:'/comalli/mesero.png',alt:'Punto de venta para meseros',caption:'Punto de venta'},{src:'/comalli/cliente.png',alt:'Menú público para clientes',caption:'Menú del cliente'}]} />
+              <FeaturedProject number="04" title="BalaaYu Store" subtitle="Tienda de artesanía oaxaqueña · 2025" logo="/projects/balaayu-logo.png" description="Tienda en línea dedicada al barro negro de San Bartolo Coyotepec, rojo de San Marcos Tlapazola y verde de Santa María Atzompa, Oaxaca. Presenta el origen artesanal de cada comunidad, un catálogo con productos, precios y existencias, carrito de compra y acceso de usuarios." tags={['Angular 19', 'Firebase', 'Catálogo', 'Artesanía', '2025']} slides={[{src:'/balaayu/inicio.png',alt:'Inicio de BalaaYu Store',caption:'Inicio y artesanía'},{src:'/balaayu/catalogo.png',alt:'Catálogo de barro de BalaaYu',caption:'Catálogo de productos'}]} />
             </div>
           </div>
         </section>

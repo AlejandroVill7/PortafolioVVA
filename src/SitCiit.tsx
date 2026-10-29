@@ -20,15 +20,15 @@ const shots = [
 ];
 
 export default function SitCiit() {
-  useEffect(() => { document.title = 'SIT-CIIT | Alejandro Villegas'; window.scrollTo(0, 0); }, []);
+  useEffect(() => { document.title = 'Zenda (SIT-CIIT) | Alejandro Villegas'; window.scrollTo(0, 0); }, []);
   return <main className="min-h-screen bg-[var(--bg-base)] text-[var(--text-main)]">
     <ThemeToggle />
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
       <a href="/" className="inline-flex items-center gap-2 font-tech text-sm text-[var(--text-muted)] hover:text-[var(--accent-primary)]"><ArrowLeft size={16}/> VOLVER AL PORTAFOLIO</a>
       <header className="py-20 md:py-28 border-b border-[var(--border-color)]">
         <p className="font-tech text-xs tracking-[.25em] text-[var(--accent-primary)] mb-6">PROYECTO / SISTEMA INTEGRAL</p>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10"><img src="/sit-ciit/zenda-logo-claro.png" alt="Logo claro de Zenda" className="w-24 h-24 md:w-32 md:h-32 object-contain" /><h1 className="text-6xl md:text-8xl font-black tracking-tighter">SIT-CIIT<span className="text-[var(--accent-secondary)]">.</span></h1></div>
-        <p className="mt-8 max-w-3xl text-xl md:text-2xl leading-relaxed text-[var(--text-muted)]">Plataforma de monitoreo para el Corredor Interoceánico: conecta nodos móviles, telemetría, alertas y operación ferroviaria en un sistema distribuido.</p>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10"><img src="/sit-ciit/zenda-logo-claro.png" alt="Logo claro de Zenda" className="w-24 h-24 md:w-32 md:h-32 object-contain" /><h1 className="text-6xl md:text-8xl font-black tracking-tighter">Zenda<span className="text-[var(--accent-secondary)]">.</span></h1></div>
+        <p className="mt-8 max-w-3xl text-xl md:text-2xl leading-relaxed text-[var(--text-muted)]">Zenda (SIT-CIIT) es una plataforma de monitoreo para el Corredor Interoceánico: conecta nodos móviles, telemetría, alertas y operación ferroviaria en un sistema distribuido.</p>
         <div className="mt-10 flex flex-wrap gap-3 font-tech text-xs uppercase tracking-wider">{['5 aplicaciones y servicios', 'Tiempo real', 'Web + móvil', 'Arquitectura distribuida'].map(x => <span key={x} className="border border-[var(--border-color)] px-3 py-2">{x}</span>)}</div>
       </header>
 
