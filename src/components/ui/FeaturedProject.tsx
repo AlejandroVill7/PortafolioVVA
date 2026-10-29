@@ -2,6 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { LoadedImage } from './LoadedImage';
 import { ArrowUpRight } from 'lucide-react';
 
+const imageCache = new Map<string, Promise<void>>();
+function preloadImage(src: string) {
+  let pending = imageCache.get(src);
+  if (!pending) {
+    const image = new Image();
+    image.src = src;
+    pending = image.decode().catch(error => { imageCache.delete(src); throw error; });
+    imageCache.set(src, pending);
+  }
+  return pending;
+}
+
 export type ProjectSlide = { src: string; alt: string; caption: string };
 
 export function FeaturedProject({ title, subtitle, logo, description, tags, slides, href, number, darkLogoWhite }: {
@@ -10,32 +22,33 @@ export function FeaturedProject({ title, subtitle, logo, description, tags, slid
 }) {
   const [index, setIndex] = useState(0);
   const [ready, setReady] = useState(false);
+  const [pageVisible, setPageVisible] = useState(!document.hidden);
   const [visible, setVisible] = useState(false);
   const projectRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const update = () => setPageVisible(!document.hidden);
+    document.addEventListener('visibilitychange', update);
+    return () => document.removeEventListener('visibilitychange', update);
+  }, []);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { rootMargin: '100px' });
     if (projectRef.current) observer.observe(projectRef.current);
     return () => observer.disconnect();
   }, []);
   useEffect(() => {
-    if (!visible) return;
+    if (!visible || !pageVisible) return;
     let cancelled = false;
-    const load = async (src: string) => {
-      const image = new Image();
-      image.src = src;
-      await image.decode();
-    };
-    load(slides[index].src).then(() => { if (!cancelled) setReady(true); }).catch(() => {});
+    preloadImage(slides[index].src).then(() => { if (!cancelled) setReady(true); }).catch(() => {});
     if (slides.length < 2 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return () => { cancelled = true; };
     const next = (index + 1) % slides.length;
-    const nextImage = load(slides[next].src);
+    const nextImage = preloadImage(slides[next].src);
     // Attach a handler immediately so failed preloads never become unhandled rejections.
     const loaded = nextImage.then(() => true, () => false);
     const timer = window.setTimeout(async () => {
       if (await loaded && !cancelled && !document.hidden) setIndex(next);
     }, 3500);
     return () => { cancelled = true; window.clearTimeout(timer); };
-  }, [visible, index, slides]);
+  }, [visible, pageVisible, index, slides]);
   const slide = slides[index];
   const content = <>
     <div className="flex items-center gap-4 mb-6"><LoadedImage src={logo} alt={`Logo de ${title}`} className={`w-20 h-20 object-contain shrink-0 ${darkLogoWhite ? 'logo-white-in-dark' : ''}`} /><div><p className="font-tech text-xs tracking-widest text-[var(--accent-primary)]">PROYECTO / {number}</p><h3 className="text-3xl md:text-4xl font-bold mt-1">{title}</h3>{subtitle && <p className="text-sm text-[var(--text-muted)]">{subtitle}</p>}</div></div>

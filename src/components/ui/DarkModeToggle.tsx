@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Terminal } from 'lucide-react';
 
 export const ThemeToggle: React.FC = () => {
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => localStorage.getItem('portfolio-theme') === 'dark');
 
   useEffect(() => {
+    localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
     if (isDark) {
       document.documentElement.classList.add('dark');
     } else {

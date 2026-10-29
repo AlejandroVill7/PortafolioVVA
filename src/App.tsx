@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react';
 import { LoadedImage } from './components/ui/LoadedImage';
 
 import { ThemeToggle } from './components/ui/DarkModeToggle';
@@ -6,14 +7,16 @@ import { TerminalDashboard } from './components/ui/TerminalDashboard';
 import { FeaturedProject } from './components/ui/FeaturedProject';
 import { Aquarium } from './components/ui/Aquarium';
 import { SectionNav } from './components/ui/SectionNav';
-import Bachesito from './Bachesito';
-import Comalli from './Comalli';
-import SitCiit from './SitCiit';
+const Bachesito = lazy(() => import('./Bachesito'));
+const Comalli = lazy(() => import('./Comalli'));
+const SitCiit = lazy(() => import('./SitCiit'));
+
+function PageLoading() { return <div className="max-w-7xl mx-auto p-8" role="status"><p className="font-tech text-sm">Cargando proyecto…</p><div className="image-skeleton h-64 rounded-xl mt-8" /></div>; }
 
 function App() {
-  if (window.location.pathname.replace(/\/$/, '') === '/sit-ciit') return <SitCiit />;
-  if (window.location.pathname.replace(/\/$/, '') === '/bachesito') return <Bachesito />;
-  if (window.location.pathname.replace(/\/$/, '') === '/comalli') return <Comalli />;
+  if (window.location.pathname.replace(/\/$/, '') === '/sit-ciit') return <Suspense fallback={<PageLoading />}><SitCiit /></Suspense>;
+  if (window.location.pathname.replace(/\/$/, '') === '/bachesito') return <Suspense fallback={<PageLoading />}><Bachesito /></Suspense>;
+  if (window.location.pathname.replace(/\/$/, '') === '/comalli') return <Suspense fallback={<PageLoading />}><Comalli /></Suspense>;
   return <Home />;
 }
 
@@ -33,31 +36,31 @@ function Home() {
         <SectionNav />
 
         {/* --- SECTION 1: HERO --- */}
-        <section id="sobre-mi" className="overflow-hidden isolate w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-20 lg:pl-44 relative z-10 pt-24 md:pt-20">
+        <section id="sobre-mi" className="overflow-hidden isolate w-full min-h-[90vh] flex flex-col justify-center px-6 md:px-20 relative z-10 pt-24 md:pt-20 pb-28">
           <Aquarium />
-          <div className="max-w-7xl mx-auto w-full hero-content relative z-10">
+          <div className="max-w-7xl mx-auto w-full hero-content relative z-10 text-center">
             <div className="inline-block border border-[var(--accent-primary)] px-3 py-1 mb-6 rounded-sm bg-[var(--bg-surface)]">
               <span className="font-tech text-xs tracking-widest text-[var(--accent-primary)] uppercase">Status: Online</span>
             </div>
             
-            <div className="flex flex-col-reverse lg:flex-row lg:items-center gap-8 lg:gap-14 mb-6">
+            <div className="flex flex-col-reverse items-center gap-8 mb-6">
               <GlitchText
                 text="ALEJANDRO VILLEGAS VELÁZQUEZ"
                 as="h1"
-                className="min-w-0 break-words text-5xl md:text-7xl lg:text-[88px] font-black leading-none tracking-tighter text-[var(--text-main)]"
+                className="min-w-0 break-words text-5xl md:text-7xl lg:text-[76px] font-black leading-none tracking-tighter text-[var(--text-main)]"
               />
-              <div className="shrink-0 w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 overflow-hidden rounded-full border-4 border-[var(--accent-primary)] shadow-[0_0_35px_var(--accent-primary)]">
-                <LoadedImage src="/fotoperfil.jpeg" alt="Retrato de Alejandro Villegas Velázquez" className="w-full h-full object-cover object-[center_62%]" />
+              <div className="portrait-water shrink-0 w-40 h-40 md:w-52 md:h-52 lg:w-64 lg:h-64 rounded-full border-4 border-[var(--accent-primary)] shadow-[0_0_35px_var(--accent-primary)]">
+                <LoadedImage src="/fotoperfil.webp" alt="Retrato de Alejandro Villegas Velázquez" fetchPriority="high" loading="eager" className="w-full h-full rounded-full object-cover object-[center_62%]" />
               </div>
             </div>
             
-            <div className="flex flex-col md:flex-row gap-6 md:items-center">
+            <div className="flex flex-col md:flex-row gap-6 md:items-center justify-center">
               <h2 className="text-2xl md:text-4xl text-[var(--text-muted)] font-light">
                 Software Developer & <span className="text-[var(--accent-secondary)] font-bold">Systems Engineering Student</span>
               </h2>
             </div>
             
-            <p className="mt-8 max-w-2xl text-lg text-[var(--text-muted)] leading-relaxed">
+            <p className="mt-8 mx-auto max-w-2xl text-lg text-[var(--text-muted)] leading-relaxed">
               Desarrollo aplicaciones web y móviles con TypeScript, React, React Native y Laravel. Trabajo con interfaces reutilizables, APIs REST, bases de datos y visualización geoespacial.
             </p>
           </div>
@@ -85,10 +88,10 @@ function Home() {
             </div>
             
             <div className="grid gap-8 projects-grid">
-              <FeaturedProject number="01" title="Zenda" subtitle="SIT-CIIT · monitoreo ferroviario" logo="/sit-ciit/zenda-logo-claro.png" href="/sit-ciit/" description="Sistema distribuido para monitoreo del Corredor Interoceánico: aplicación móvil que simula y captura sensores, telemetría por MQTT, centro de control con mapas y alertas, y portal de seguimiento de envíos." tags={['React Native', 'React', 'Fastify', 'MQTT', 'TimescaleDB']} slides={[{src:'/sit-ciit/landing.png',alt:'Portal público de Zenda',caption:'Portal de seguimiento'},{src:'/sit-ciit/dashboard-mapa.png',alt:'Mapa del centro de control',caption:'Centro de control y mapa'},{src:'/sit-ciit/dashboard-conectividad.png',alt:'Conectividad del centro de control',caption:'Conectividad'}]} />
-              <FeaturedProject number="02" title="BachesITO" logo="/projects/bachesito-logo.png" href="/bachesito/" description="Plataforma cívica para reportar baches desde el teléfono y gestionar su atención desde un panel gubernamental. Incluye mapa, evidencia fotográfica, seguimiento de estados, prioridades y asignación operativa." tags={['React', 'Laravel', 'PWA', 'Mapas', 'HackaTec 2026']} slides={[{src:'/bachesito/gobierno-dashboard.png',alt:'Panel gubernamental con reportes',caption:'Panel de gobierno'},{src:'/bachesito/gobierno-reportes.png',alt:'Listado de reportes',caption:'Gestión de reportes'}]} />
-              <FeaturedProject number="03" title="Comalli" logo="/comalli/logo.png" href="/comalli/" description="SaaS de gestión para restaurantes y franquicias. Conecta administración, sucursales, inventario, mesas, punto de venta, cocina y menú público para clientes mediante roles y aislamiento de datos por franquicia." tags={['Laravel', 'Vue', 'Inertia', 'Multi-tenant', 'POS']} slides={[{src:'/comalli/admin.png',alt:'Panel de administración Comalli',caption:'Administración'},{src:'/comalli/cocina.png',alt:'Vista de cocina Comalli',caption:'Cocina'},{src:'/comalli/mesero.png',alt:'Punto de venta para meseros',caption:'Punto de venta'}]} />
-              <FeaturedProject number="04" title="BalaaYu Store" subtitle="Tienda de artesanía oaxaqueña · 2025" logo="/projects/balaayu-logo.png" darkLogoWhite description="Tienda en línea dedicada al barro negro de San Bartolo Coyotepec, rojo de San Marcos Tlapazola y verde de Santa María Atzompa, Oaxaca. Presenta el origen artesanal de cada comunidad, un catálogo con productos, precios y existencias, carrito de compra y acceso de usuarios." tags={['Angular 19', 'Firebase', 'Catálogo', 'Artesanía', '2025']} slides={[{src:'/balaayu/inicio.png',alt:'Inicio de BalaaYu Store',caption:'Inicio y artesanía'},{src:'/balaayu/catalogo.png',alt:'Catálogo de barro de BalaaYu',caption:'Catálogo de productos'}]} />
+              <FeaturedProject number="01" title="Zenda" subtitle="SIT-CIIT · monitoreo ferroviario" logo="/sit-ciit/zenda-logo-claro.png" href="/sit-ciit/" description="Sistema distribuido para monitoreo del Corredor Interoceánico: aplicación móvil que simula y captura sensores, telemetría por MQTT, centro de control con mapas y alertas, y portal de seguimiento de envíos." tags={['React Native', 'React', 'Fastify', 'MQTT', 'TimescaleDB']} slides={[{src:'/sit-ciit/landing.webp',alt:'Portal público de Zenda',caption:'Portal de seguimiento'},{src:'/sit-ciit/dashboard-mapa.webp',alt:'Mapa del centro de control',caption:'Centro de control y mapa'},{src:'/sit-ciit/dashboard-conectividad.webp',alt:'Conectividad del centro de control',caption:'Conectividad'}]} />
+              <FeaturedProject number="02" title="BachesITO" logo="/projects/bachesito-logo.png" href="/bachesito/" description="Plataforma cívica para reportar baches desde el teléfono y gestionar su atención desde un panel gubernamental. Incluye mapa, evidencia fotográfica, seguimiento de estados, prioridades y asignación operativa." tags={['React', 'Laravel', 'PWA', 'Mapas', 'HackaTec 2026']} slides={[{src:'/bachesito/gobierno-dashboard.webp',alt:'Panel gubernamental con reportes',caption:'Panel de gobierno'},{src:'/bachesito/gobierno-reportes.webp',alt:'Listado de reportes',caption:'Gestión de reportes'}]} />
+              <FeaturedProject number="03" title="Comalli" logo="/comalli/logo.png" href="/comalli/" description="SaaS de gestión para restaurantes y franquicias. Conecta administración, sucursales, inventario, mesas, punto de venta, cocina y menú público para clientes mediante roles y aislamiento de datos por franquicia." tags={['Laravel', 'Vue', 'Inertia', 'Multi-tenant', 'POS']} slides={[{src:'/comalli/admin.webp',alt:'Panel de administración Comalli',caption:'Administración'},{src:'/comalli/cocina.webp',alt:'Vista de cocina Comalli',caption:'Cocina'},{src:'/comalli/mesero.webp',alt:'Punto de venta para meseros',caption:'Punto de venta'}]} />
+              <FeaturedProject number="04" title="BalaaYu Store" subtitle="Tienda de artesanía oaxaqueña · 2025" logo="/projects/balaayu-logo.png" darkLogoWhite description="Tienda en línea dedicada al barro negro de San Bartolo Coyotepec, rojo de San Marcos Tlapazola y verde de Santa María Atzompa, Oaxaca. Presenta el origen artesanal de cada comunidad, un catálogo con productos, precios y existencias, carrito de compra y acceso de usuarios." tags={['Angular 19', 'Firebase', 'Catálogo', 'Artesanía', '2025']} slides={[{src:'/balaayu/inicio.webp',alt:'Inicio de BalaaYu Store',caption:'Inicio y artesanía'},{src:'/balaayu/catalogo.webp',alt:'Catálogo de barro de BalaaYu',caption:'Catálogo de productos'},{src:'/balaayu/atzompa.webp',alt:'Historia artesanal de Santa María Atzompa',caption:'Origen de la artesanía'},{src:'/balaayu/nosotros.webp',alt:'Presentación de BalaaYu y sus artesanos',caption:'Comunidad y propósito'}]} />
             </div>
           </div>
         </section>

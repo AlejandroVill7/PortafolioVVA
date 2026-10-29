@@ -1,3 +1,4 @@
+import { Aquarium } from './components/ui/Aquarium';
 import { LoadedImage } from './components/ui/LoadedImage';
 import { useEffect } from 'react';
 import { ArrowLeft, ArrowUpRight, Database, Radio, Smartphone, Monitor, PackageSearch } from 'lucide-react';
@@ -12,12 +13,14 @@ const parts = [
 ];
 
 const shots = [
-  { src: '/sit-ciit/landing.png', title: 'Portal público', detail: 'Landing ejecutada localmente' },
-  { src: '/sit-ciit/tracking-demo.png', title: 'Seguimiento de envío', detail: 'Ejemplo ficticio del portal en desarrollo' },
-  { src: '/sit-ciit/dashboard-mapa.png', title: 'Ruta ferroviaria', detail: 'Dashboard con sesión de prueba; mapa del corredor' },
-  { src: '/sit-ciit/dashboard-conectividad.png', title: 'Conectividad', detail: 'Vista autenticada en entorno de prueba aislado' },
-  { src: '/sit-ciit/dashboard-gestion.png', title: 'Gestión logística', detail: 'Módulos operativos con sesión de administrador de prueba' },
-  { src: '/sit-ciit/dashboard-envios.png', title: 'Envíos', detail: 'Listado del entorno de prueba, sin registros reales' },
+  {src:'/sit-ciit/dashboard-bitacora.webp',title:'Bitácora operativa',detail:'Registro de actividad en el entorno local de prueba.'},
+  {src:'/sit-ciit/dashboard-usuarios.webp',title:'Gestión de usuarios',detail:'Administración de cuentas y roles con sesión de control.'},
+  { src: '/sit-ciit/landing.webp', title: 'Portal público', detail: 'Landing ejecutada localmente' },
+  { src: '/sit-ciit/tracking-demo.webp', title: 'Seguimiento de envío', detail: 'Ejemplo ficticio del portal en desarrollo' },
+  { src: '/sit-ciit/dashboard-mapa.webp', title: 'Ruta ferroviaria', detail: 'Dashboard con sesión de prueba; mapa del corredor' },
+  { src: '/sit-ciit/dashboard-conectividad.webp', title: 'Conectividad', detail: 'Vista autenticada en entorno de prueba aislado' },
+  { src: '/sit-ciit/dashboard-gestion.webp', title: 'Gestión logística', detail: 'Módulos operativos con sesión de administrador de prueba' },
+  { src: '/sit-ciit/dashboard-envios.webp', title: 'Envíos', detail: 'Listado del entorno de prueba, sin registros reales' },
 ];
 
 export default function SitCiit() {
@@ -26,7 +29,7 @@ export default function SitCiit() {
     <ThemeToggle />
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-8">
       <a href="/" className="inline-flex items-center gap-2 font-tech text-sm text-[var(--text-muted)] hover:text-[var(--accent-primary)]"><ArrowLeft size={16}/> VOLVER AL PORTAFOLIO</a>
-      <header className="py-20 md:py-28 border-b border-[var(--border-color)]">
+      <header className="project-header py-20 md:py-28 border-b border-[var(--border-color)]"><Aquarium />
         <p className="font-tech text-xs tracking-[.25em] text-[var(--accent-primary)] mb-6">PROYECTO / SISTEMA INTEGRAL</p>
         <div className="flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-10"><LoadedImage src="/sit-ciit/zenda-logo-claro.png" alt="Logo claro de Zenda" className="w-24 h-24 md:w-32 md:h-32 object-contain" /><h1 className="text-6xl md:text-8xl font-black tracking-tighter">Zenda<span className="text-[var(--accent-secondary)]">.</span></h1></div>
         <p className="mt-8 max-w-3xl text-xl md:text-2xl leading-relaxed text-[var(--text-muted)]">Zenda (SIT-CIIT) es una plataforma de monitoreo para el Corredor Interoceánico: conecta nodos móviles, telemetría, alertas y operación ferroviaria en un sistema distribuido.</p>
@@ -44,8 +47,8 @@ export default function SitCiit() {
       <section className="py-20 border-b border-[var(--border-color)]"><p className="font-tech text-sm text-[var(--accent-secondary)]">03 / VISTAS REALES</p><h2 className="text-4xl font-bold mt-4 mb-4">El proyecto en ejecución</h2><p className="text-[var(--text-muted)] mb-10 max-w-2xl">Capturas del portal y del dashboard después de iniciar sesión con una cuenta de prueba. El dashboard usa un esquema temporal aislado, sin unidades ni envíos reales; por eso algunas vistas muestran estados vacíos. Puedes abrir cada captura para verla completa.</p><div className="grid lg:grid-cols-2 gap-8">{shots.map(s=><figure key={s.src} className="border border-[var(--border-color)] bg-[var(--bg-surface)] overflow-hidden"><a href={s.src} target="_blank" rel="noreferrer" aria-label={`Abrir captura completa: ${s.title}`}><LoadedImage src={s.src} alt={s.title} className="w-full aspect-[16/10] object-cover object-top"/></a><figcaption className="p-5"><strong className="block">{s.title}</strong><span className="text-sm text-[var(--text-muted)]">{s.detail}</span></figcaption></figure>)}</div>
         <div className="mt-10 grid lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] gap-8 lg:gap-12 items-center border border-[var(--border-color)] bg-[var(--bg-surface)] p-5 md:p-8">
           <div className="grid grid-cols-2 gap-3 md:gap-5 items-start justify-items-center">
-            <LoadedImage src="/sit-ciit/mobile-sensores.png" alt="Vista vertical del móvil con lecturas simuladas de aceleración en los ejes X, Y y Z" className="w-full max-w-[300px] h-auto border border-[var(--border-color)] shadow-lg" />
-            <LoadedImage src="/sit-ciit/mobile-grafica.png" alt="Vista vertical del móvil con gráfica de aceleración y métricas de luz y presión simuladas" className="w-full max-w-[300px] h-auto border border-[var(--border-color)] shadow-lg" />
+            <LoadedImage src="/sit-ciit/mobile-sensores.webp" alt="Vista vertical del móvil con lecturas simuladas de aceleración en los ejes X, Y y Z" className="w-full max-w-[300px] h-auto border border-[var(--border-color)] shadow-lg" />
+            <LoadedImage src="/sit-ciit/mobile-grafica.webp" alt="Vista vertical del móvil con gráfica de aceleración y métricas de luz y presión simuladas" className="w-full max-w-[300px] h-auto border border-[var(--border-color)] shadow-lg" />
           </div>
           <div><p className="font-tech text-xs tracking-widest text-[var(--accent-primary)]">APP MÓVIL / MODO NODO</p><h3 className="text-3xl md:text-4xl font-bold mt-4">Sensores en movimiento</h3><p className="text-[var(--text-muted)] leading-relaxed mt-6">La demostración web simula lecturas del acelerómetro en tres ejes. Las barras y la gráfica muestran cómo cambian X, Y y Z durante el movimiento; también se presentan métricas de luz y presión.</p><p className="text-[var(--text-muted)] leading-relaxed mt-4">En un teléfono físico, el modo Nodo puede capturar datos de sus sensores y ubicación para detectar eventos y enviar telemetría. Estas capturas muestran datos simulados, sin conexión a una unidad real.</p></div>
         </div>

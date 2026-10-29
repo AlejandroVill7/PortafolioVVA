@@ -4,9 +4,12 @@ export function Aquarium() {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(true);
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => setActive(entry.isIntersecting));
+    let visible = true;
+    const update = () => setActive(visible && !document.hidden);
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); });
+    document.addEventListener('visibilitychange', update);
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); document.removeEventListener('visibilitychange', update); };
   }, []);
   return <div ref={ref} className={`aquarium ${active ? '' : 'aquarium-paused'}`} aria-hidden="true">
     <div className="aquarium-light" />
