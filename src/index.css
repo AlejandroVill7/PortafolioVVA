@@ -177,3 +177,17 @@ section[id] { scroll-margin-top: 4.5rem; }
 .dark .aquarium-fish { opacity:.55; }
 @media(max-width:767px) { .aquarium-fish { opacity:.3; }.fish-3,.fish-4 { display:none; }.aquarium-floor { width:100%; height:90px; } }
 @media(prefers-reduced-motion:reduce) { .aquarium-fish { animation:none; } }
+
+.aquarium { mask-image:linear-gradient(#000 80%,transparent 100%); }
+.aquarium-shore { position:absolute; bottom:-1px; left:0; width:100%; height:130px; }
+.aquarium-floor { top:0; bottom:auto; transform:rotate(180deg); mask-image:linear-gradient(transparent,#000); }
+.fish-5 { top:54%; left:90%; width:38px; animation-duration:37s; animation-delay:-16s; }
+.fish-6 { top:35%; left:65%; width:48px; animation-duration:33s; animation-delay:-9s; }
+.fish-7 { top:12%; left:48%; width:32px; animation-duration:41s; animation-delay:-23s; }
+.fish-8 { top:75%; left:55%; width:40px; animation-duration:36s; animation-delay:-13s; }
+@media(min-width:768px) {
+  .section-nav-link { position:relative; }
+  .section-nav-label { position:absolute; left:calc(100% + 16px); padding:8px 12px; border:1px solid var(--border-color); border-radius:6px; background:var(--bg-panel); opacity:0; visibility:hidden; transform:translateX(-5px); transition:opacity 140ms,transform 140ms; pointer-events:none; }
+  .section-nav-link:hover .section-nav-label,.section-nav-link:focus-visible .section-nav-label { opacity:1; visibility:visible; transform:translateX(0); }
+}
+@media(max-width:767px) { .fish-6,.fish-7,.fish-8 { display:none; } }
