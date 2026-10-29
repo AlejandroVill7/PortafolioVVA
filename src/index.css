@@ -234,3 +234,9 @@ a:focus-visible,button:focus-visible { outline:2px solid var(--accent-primary); 
 .browser-viewport { container-type:inline-size; }
 @keyframes preview-scroll { 0%,15% { transform:translateY(0); } 75%,100% { transform:translateY(min(0px,calc(50cqw - 100%))); } }
 @media(prefers-reduced-motion:reduce) { .tech-cloud img,.browser-scroll-image { animation:none; } }
+.portal-scroll-preview { margin:0; border:0; border-radius:0; }
+.portal-scroll-image { opacity:0; animation:portal-tour 22s ease-in-out infinite alternate; animation-play-state:paused; }
+.portal-image-ready { opacity:1; }
+.preview-playing .portal-scroll-image:not(.portal-image-ready) { animation-play-state:paused; }
+@keyframes portal-tour { 0%,12% { transform:translateY(0); } 88%,100% { transform:translateY(min(0px,calc(50cqw - 100%))); } }
+@media(prefers-reduced-motion:reduce) { .portal-scroll-image { animation:none; } }
