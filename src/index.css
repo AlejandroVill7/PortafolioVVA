@@ -191,3 +191,9 @@ section[id] { scroll-margin-top: 4.5rem; }
   .section-nav-link:hover .section-nav-label,.section-nav-link:focus-visible .section-nav-label { opacity:1; visibility:visible; transform:translateX(0); }
 }
 @media(max-width:767px) { .fish-6,.fish-7,.fish-8 { display:none; } }
+.image-shell { display:inline-block; overflow:hidden; vertical-align:middle; }
+.image-shell.h-auto { aspect-ratio:430 / 930; }
+.image-shell.h-auto:has(img[src*="logo"]) { aspect-ratio:3.68 / 1; }
+.image-loading,.image-skeleton { background:linear-gradient(110deg,var(--bg-surface),var(--border-color),var(--bg-surface)); }
+.image-ready { background:transparent; }
+.project-slide { animation:none; }
